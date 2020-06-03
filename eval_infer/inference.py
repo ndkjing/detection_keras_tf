@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from train_model.temp.configuration import NUM_CLASSES, IMAGE_HEIGHT, IMAGE_WIDTH
+from configs.configuration import NUM_CLASSES, IMAGE_HEIGHT, IMAGE_WIDTH
 from keras_layers.anchor import DefaultBoxes
 from models.ssd.ssd import ssd_prediction
 from keras_layers.nms import NMS
