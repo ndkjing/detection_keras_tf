@@ -46,7 +46,7 @@ from utils.efficientdet_utils.draw_boxes import draw_boxes
 def main():
     os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 
-    phi = 4
+    phi = 2
     weighted_bifpn = True
     model_path = '/Data/jing/weights/detection/keras_tf/efficientdet/pretrain/efficientdet-d%d.h5'%(phi)
     image_sizes = (512, 640, 768, 896, 1024, 1280, 1408)
