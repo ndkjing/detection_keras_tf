@@ -12,8 +12,8 @@ assert phi in [0, 1, 2, 3, 4, 5, 6]
 gpu = "3"  # Id of the GPU to use (as reported by nvidia-smi).')
 epochs = 500
 steps = 10000
-snapshot_path = '/Data/jing/weights/efficientdet'  # 'Path to store snapshots of models during training',
-tensorboard_dir = '/Data/jing/weights/efficientdet'
+snapshot_path = '/Data/jing/weights/detection/keras_tf/efficientdet'  # 'Path to store snapshots of models during training',
+tensorboard_dir = '/Data/jing/weights/detection/keras_tf/efficientdet'
 no_snapshots = True  # ', help='Disable saving snapshots.', dest='snapshots', action='store_false')
 snapshots=True
 no_evaluation = True  # ', help='Disable per epoch evaluation.', dest='evaluation',

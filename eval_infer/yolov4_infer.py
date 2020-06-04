@@ -21,6 +21,7 @@ model_name='yolov4'               #, 'yolov3 or yolov4')
 image_path='../images_test/img.png'        #, 'path to input image')
 image_write_path = os.path.join('images_out/', 'yolov4' + '.png')
 
+
 def main(_argv):
     if tiny:
         STRIDES = np.array(cfg.YOLO.STRIDES_TINY)

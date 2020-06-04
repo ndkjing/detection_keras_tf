@@ -86,8 +86,8 @@ def create_callbacks(training_model, prediction_model, validation_generator, eff
         checkpoint = keras.callbacks.ModelCheckpoint(
             os.path.join(
                 efficientdet_config.snapshot_path,
-                f'{efficientdet_config.dataset_type}_{{epoch:02d}}_{{loss:.4f}}_{{val_loss:.4f}}.h5' if efficientdet_config.compute_val_loss
-                else f'{efficientdet_config.dataset_type}_{{epoch:02d}}_{{loss:.4f}}.h5'
+                f'{efficientdet_config.dataset_type}_{efficientdet_config.phi}_{{epoch:02d}}_{{loss:.4f}}_{{val_loss:.4f}}.h5' if efficientdet_config.compute_val_loss
+                else f'{efficientdet_config.dataset_type}_{efficientdet_config.phi}_{{epoch:02d}}_{{loss:.4f}}.h5'
             ),
             verbose=1,
             save_weights_only=True,

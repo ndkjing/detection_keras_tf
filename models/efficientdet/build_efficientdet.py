@@ -467,5 +467,5 @@ def efficientdet(phi, num_classes=20, num_anchors=9, weighted_bifpn=False, freez
 
 
 if __name__ == '__main__':
-    model, prediction_model = efficientdet(1)
+    model, prediction_model = efficientdet(6)
     model.summary()

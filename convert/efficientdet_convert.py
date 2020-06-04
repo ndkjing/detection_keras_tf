@@ -1,13 +1,16 @@
 # refer:https://github.com/xuannianz/EfficientDet.git
 import os, sys
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath("__file__"))))
+
 import cv2
 import json
 import numpy as np
 import os
 import time
 import glob
+
+import tensorflow as tf
 
 from models.efficientdet.build_efficientdet import efficientdet
 from utils.efficientdet_utils import preprocess_image, postprocess_boxes
@@ -46,6 +49,8 @@ from utils.efficientdet_utils.draw_boxes import draw_boxes
 
 
 def main():
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+
     phi = 2
     weighted_bifpn = True
     model_path = '/Data/jing/weights/detection/keras_tf/efficientdet/pretrain/efficientdet-d%d.h5' % (phi)
@@ -61,33 +66,40 @@ def main():
                             num_classes=num_classes,
                             score_threshold=score_threshold)
     model.load_weights(model_path, by_name=True)
-    image_path = '../images_test/img.png'
-    image = cv2.imread(image_path)
-    src_image = image.copy()
-    # BGR -> RGB
-    image = image[:, :, ::-1]
-    h, w = image.shape[:2]
+    model.summary()
+    converter = tf.lite.TFLiteConverter.from_keras_model(model)
+    tflite_model = converter.convert()
 
-    image, scale = preprocess_image(image, image_size=image_size)
-    # run network
-    start = time.time()
-    boxes, scores, labels = model.predict_on_batch([np.expand_dims(image, axis=0)])
-    boxes, scores, labels = np.squeeze(boxes), np.squeeze(scores), np.squeeze(labels)
-    print(time.time() - start)
-    boxes = postprocess_boxes(boxes=boxes, scale=scale, height=h, width=w)
-
-    # select indices which have a score above the threshold
-    indices = np.where(scores[:] > score_threshold)[0]
-
-    # select those detections
-    boxes = boxes[indices]
-    labels = labels[indices]
-
-    draw_boxes(src_image, boxes, scores, labels, colors, classes)
-    if not os.path.exists('images_out'):
-        os.mkdir('images_out')
-    image_write_path = os.path.join('images_out/', 'efficientdet' + str(phi) + '.png')
-    cv2.imwrite(image_write_path, src_image)
+    # Save the TF Lite model.
+    with tf.gfile.GFile('model.tflite', 'wb') as f:
+        f.write(tflite_model)
+    # image_path = '../images_test/img.png'
+    # image = cv2.imread(image_path)
+    # src_image = image.copy()
+    # # BGR -> RGB
+    # image = image[:, :, ::-1]
+    # h, w = image.shape[:2]
+    #
+    # image, scale = preprocess_image(image, image_size=image_size)
+    # # run network
+    # start = time.time()
+    # boxes, scores, labels = model.predict_on_batch([np.expand_dims(image, axis=0)])
+    # boxes, scores, labels = np.squeeze(boxes), np.squeeze(scores), np.squeeze(labels)
+    # print(time.time() - start)
+    # boxes = postprocess_boxes(boxes=boxes, scale=scale, height=h, width=w)
+    #
+    # # select indices which have a score above the threshold
+    # indices = np.where(scores[:] > score_threshold)[0]
+    #
+    # # select those detections
+    # boxes = boxes[indices]
+    # labels = labels[indices]
+    #
+    # draw_boxes(src_image, boxes, scores, labels, colors, classes)
+    # if not os.path.exists('images_out'):
+    #     os.mkdir('images_out')
+    # image_write_path = os.path.join('images_out/', 'efficientdet' + str(phi) + '.png')
+    # cv2.imwrite(image_write_path, src_image)
 
 
 if __name__ == '__main__':
