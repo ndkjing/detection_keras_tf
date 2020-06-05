@@ -41,7 +41,7 @@ print("config info:",
       vgg_ssd300.l2_regularization,
       type(vgg_ssd300.l2_regularization)
       )
-model_name = 'mb1_ssd300'
+model_name = 'mb1_ssd300'  # 选择模型
 
 model_mapping={
     'vgg_ssd300':build_vgg_ssd300_model,

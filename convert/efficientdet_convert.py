@@ -67,12 +67,30 @@ def main():
                             score_threshold=score_threshold)
     model.load_weights(model_path, by_name=True)
     model.summary()
-    converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    tflite_model = converter.convert()
+    def conver1():
+        converter = tf.lite.TFLiteConverter.from_keras_model(model)
+        converter.allow_custom_ops = True
+        tflite_model = converter.convert()
+        tflite_model = converter.convert()
 
-    # Save the TF Lite model.
-    with tf.gfile.GFile('model.tflite', 'wb') as f:
-        f.write(tflite_model)
+        # Save the TF Lite model.
+        with tf.gfile.GFile('model.tflite', 'wb') as f:
+            f.write(tflite_model)
+    def conver2():
+        saved_model_obj = tf.saved_model.load(export_dir='saved_model')
+        print(saved_model_obj.signatures.keys())
+
+        concrete_func = saved_model_obj.signatures['serving_default']
+        concrete_func.inputs[0].set_shape([1, 512, 512, 3])
+
+        converter = tf.lite.TFLiteConverter.from_concrete_functions([concrete_func])
+        converter.optimizations = [tf.lite.Optimize.DEFAULT]
+        converter.experimental_new_converter = True
+        converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+        tflite_model = converter.convert()
+
+        open("efficientdet.tflite", "wb").write(tflite_model)
+    conver1()
     # image_path = '../images_test/img.png'
     # image = cv2.imread(image_path)
     # src_image = image.copy()
