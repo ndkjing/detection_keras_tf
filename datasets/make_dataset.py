@@ -1,5 +1,5 @@
 import tensorflow as tf
-from configs.configuration import TXT_DIR, BATCH_SIZE
+from configs.ssd import TXT_DIR, BATCH_SIZE
 
 
 class TFDataset(object):

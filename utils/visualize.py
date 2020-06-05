@@ -1,6 +1,9 @@
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath("__file__"))))
+
 import cv2
-from eval_infer.test import test_single_picture
-from configs.configuration import training_results_save_dir
+# from eval_infer.test import test_single_picture
+from configs.ssd import training_results_save_dir
 
 
 def visualize_training_results(pictures, model, epoch):

@@ -1,9 +1,9 @@
 import tensorflow as tf
 import cv2
 
-from configuration import OBJECT_CLASSES, save_model_dir, test_picture_dir
+from configs.ssd import OBJECT_CLASSES, save_model_dir, test_picture_dir
 from core.inference import InferenceProcedure
-from core.ssd import SSD
+from models.ssd.ssd import SSD
 from utils.tools import preprocess_image
 
 

@@ -3,7 +3,7 @@ import numpy as np
 
 from keras_layers.IoU import IOU
 from utils.tools import str_to_int, resize_box, preprocess_image
-from configs.configuration import MAX_BOXES_PER_IMAGE, IMAGE_WIDTH, IMAGE_HEIGHT, IOU_THRESHOLD
+from configs.ssd import MAX_BOXES_PER_IMAGE, IMAGE_WIDTH, IMAGE_HEIGHT, IOU_THRESHOLD
 from keras_layers.anchor import DefaultBoxes
 
 

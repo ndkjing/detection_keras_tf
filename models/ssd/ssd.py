@@ -1,6 +1,6 @@
 import tensorflow as tf
 from backbone.resnet import ResNet50
-from configs.configuration import NUM_CLASSES, ASPECT_RATIOS
+from configs.ssd import NUM_CLASSES, ASPECT_RATIOS
 
 
 class SSD(tf.keras.Model):

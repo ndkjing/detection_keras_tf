@@ -6,12 +6,12 @@ snapshot = 'imagenet'  # Resume training from a snapshot.')
 freeze_backbone = False
 freeze_bn = False  # Freeze training of BatchNormalization layers
 weighted_bifpn = False  # Use weighted BiFPN
-batch_size = 1  # Size of the batches
-phi = 4  # Hyper parameter phi', default=0, type=int, choices=(0, 1, 2, 3, 4, 5, 6))
+batch_size = 1 # Size of the batches
+phi = 1  # Hyper parameter phi', default=0, type=int, choices=(0, 1, 2, 3, 4, 5, 6))
 assert phi in [0, 1, 2, 3, 4, 5, 6]
-gpu = "3"  # Id of the GPU to use (as reported by nvidia-smi).')
+gpu = "2"  # Id of the GPU to use (as reported by nvidia-smi).')
 epochs = 500
-steps = 10000
+steps = 500
 snapshot_path = '/Data/jing/weights/detection/keras_tf/efficientdet'  # 'Path to store snapshots of models during training',
 tensorboard_dir = '/Data/jing/weights/detection/keras_tf/efficientdet'
 no_snapshots = True  # ', help='Disable saving snapshots.', dest='snapshots', action='store_false')

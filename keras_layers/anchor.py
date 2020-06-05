@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from configs.configuration import IMAGE_WIDTH, IMAGE_HEIGHT, ASPECT_RATIOS
+from configs.ssd import IMAGE_WIDTH, IMAGE_HEIGHT, ASPECT_RATIOS
 from utils.tools import x_y_meshgrid
 
 

@@ -1,9 +1,13 @@
 """
-refer:https://github.com/xuannianz/EfficientDet.git
+refer:
+https://github.com/xuannianz/EfficientDet.git
+https://github.com/google/automl/tree/master/efficientdet
+https://github.com/qubvel/efficientnet
 """
 
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath("__file__"))))
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.optimizers import Adam

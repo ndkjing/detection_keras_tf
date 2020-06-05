@@ -3,7 +3,7 @@
 import tensorflow as tf
 import time
 
-from configs.configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, EPOCHS, NUM_CLASSES, BATCH_SIZE, save_model_dir, \
+from configs.ssd import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, EPOCHS, NUM_CLASSES, BATCH_SIZE, save_model_dir, \
     load_weights_before_training, load_weights_from_epoch, save_frequency, test_images_during_training, \
     test_images_dir_list
 from datasets.ground_truth import ReadDataset, MakeGT

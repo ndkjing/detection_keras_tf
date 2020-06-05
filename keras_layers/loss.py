@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from configs.configuration import reg_loss_weight, NUM_CLASSES, alpha, gamma
+from configs.ssd import reg_loss_weight, NUM_CLASSES, alpha, gamma
 from keras_layers.focal_loss import sigmoid_focal_loss
 
 
